@@ -36,7 +36,10 @@ Sessions allow us to know when a user logged in so we don't have to authenticate
 
 bcrypt encrypts (hashes) passwords. This makes it so we aren't storing our passwords in plain text. **cough** FACEBOOK **cough**
 
-1. What does bcrypt do to slow down attackers?
+3. What does bcrypt do to slow down attackers?
+
+In order to slow down attackers bcrypt adds time the security algorithm. This produces a Key Derivation Function.
+
 1. What are the three parts of the JSON Web Token?
 
 ## Project Set Up
@@ -54,9 +57,9 @@ Follow these steps for completing your project:
 
 - [ ] `cd` into the root of the project and run `yarn` to install dependencies.
 - [ ] Once you have your `node_modules` go ahead and run `yarn server` or `npm run server` to start your node server.
-- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo).
+- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's Repo).
 - [ ] Add your Project Manager as a Reviewer on the Pull-request
-- [ ] PM then will count the HW as done by  merging the branch back into master.
+- [ ] PM then will count the HW as done by merging the branch back into master.
 
 Helpful Tip on Testing this Project:
 
