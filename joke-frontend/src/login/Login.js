@@ -1,66 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-class Login extends React.Component {
-  state = {
-    username: '',
-    password: ''
-  };
-  render() {
-    return (
-      <>
-        <h1>Login</h1>
-        {this.props.loginMessage && <h2>{this.props.loginMessage}</h2>}
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor='username'>
-              <input
-                name='username'
-                id='username'
-                placeholder='username'
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                type='text'
-              />
-            </label>
-            <label htmlFor='password'>
-              <input
-                name='password'
-                id='password'
-                placeholder='password'
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                type='password'
-              />
-            </label>
-          </div>
-          <div>
-            <button type='submit'>Login</button>
-          </div>
-        </form>
-      </>
-    );
-  }
+const Login = props => {
+  const endpoint = 'http://localhost:3300/api/login';
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  return (
+    <>
+      <h1>Login</h1>
+      {props.loginMessage && <h2>{props.loginMessage}</h2>}
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          axios
+            .post(endpoint, { username, password })
+            .then(res => {
+              localStorage.setItem('token', res.data.token);
+              props.history.push('/jokes');
+            })
+            .catch(error => {
+              console.error('LOGIN ERROR', error);
+            });
+        }}
+      >
+        <input
+          type='text'
+          placeholder='username'
+          onChange={e => setUsername(e.target.value)}
+          name='username'
+          value={username}
+        />
+        <input
+          type='password'
+          placeholder='password'
+          onChange={e => setPassword(e.target.value)}
+          name='password'
+          value={password}
+        />
+        <button type='submit'>Login to Laugh!</button>
+      </form>
+    </>
+  );
+};
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const endpoint = 'http://localhost:3300/api/login';
-    axios
-      .post(endpoint, this.state)
-      .then(res => {
-        localStorage.setItem('token', res.data.token);
-        this.props.history.push('/jokes');
-      })
-      .catch(error => {
-        console.error('LOGIN ERROR', error);
-      });
-  };
-
-  handleInputChange = event => {
-    const { id, value } = event.target;
-    this.setState({ [id]: value });
-  };
-}
-
-export default Login;
+export default withRouter(Login);
