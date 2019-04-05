@@ -40,7 +40,15 @@ bcrypt encrypts (hashes) passwords. This makes it so we aren't storing our passw
 
 In order to slow down attackers bcrypt adds time the security algorithm. This produces a Key Derivation Function.
 
-1. What are the three parts of the JSON Web Token?
+4. What are the three parts of the JSON Web Token?
+
+The three parts of a JSON Web Token are:
+
+    1. Header
+    2. Payload
+    3. Signature
+
+A JWT typically looks like this. xxxxx.yyyyyy.zzzzz
 
 ## Project Set Up
 
