@@ -32,7 +32,10 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Sessions allow us to know when a user logged in so we don't have to authenticate them on every request or everytime they go to another page of our site. They login once and we keep track of this until they log out.
 
-1. What does bcrypt do to help us store passwords in a secure manner.
+2. What does bcrypt do to help us store passwords in a secure manner.
+
+bcrypt encrypts (hashes) passwords. This makes it so we aren't storing our passwords in plain text. **cough** FACEBOOK **cough**
+
 1. What does bcrypt do to slow down attackers?
 1. What are the three parts of the JSON Web Token?
 
